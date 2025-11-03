@@ -1,5 +1,5 @@
 import express from 'express';
-import 'dotenv/config'
+import dotenv from 'dotenv'
 import cors from 'cors'
 import connectDB from './config/mongoDb.js';
 import connectCloudinary from './config/cloudinary.js';
@@ -8,6 +8,8 @@ import productRouter from './routes/productRoute.js';
 import cartRouter from './routes/cartRoute.js';
 import orderRouter from './routes/orderRoute.js';
 
+dotenv.config();
+
 // App Config
 const app = express();
 const port = process.env.PORT || 3000;
@@ -15,8 +17,8 @@ connectDB();
 connectCloudinary();
 
 // middlewares
-app.use(express.json())
 app.use(cors())
+app.use(express.json())
 
 // api endpoints
 
