@@ -17,7 +17,14 @@ connectDB();
 connectCloudinary();
 
 // middlewares
-app.use(cors())
+app.use(cors({
+  origin: [
+    "https://baazarpur-five.vercel.app",
+    "https://baazarpur-admin.vercel.app"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 app.use(express.json())
 
 // api endpoints
