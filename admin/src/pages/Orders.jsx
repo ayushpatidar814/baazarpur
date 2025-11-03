@@ -53,7 +53,7 @@ const Orders = ({token}) => {
         {
           orders.map((order, key) => (
             <div key={key} className='grid grid-cols-1 sm:grid-cols-[0.5fr_2fr_1fr] lg:grid-cols-[0.5fr_2fr_1fr_1fr_1fr] gap-3 items-start border-2 border-gray-200 p-3 md:p-5 my-3 md:my-4 text-xs sm:text-sm text-gray-700'>
-              <img className='w-full h-auto mt-2 rounded-3xl' src={order.items[0].image} alt="icon" />
+              <img className='w-full h-auto mt-2 rounded-3xl' src={order.items[0].image[0]} alt="icon" />
               <div>
                 <div>
                 {
