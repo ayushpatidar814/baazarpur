@@ -5,7 +5,7 @@ const connectDB = async () => {
         mongoose.connection.on('connected', () => {
             console.log("MongoDB database connected")
         })
-        await mongoose.connect(`${process.env.MONGODB_URI}/Bazario`)
+        await mongoose.connect(`${process.env.MONGODB_URI}`)
     } catch (error) {
         console.log("MongoDB failed", error)
     }
