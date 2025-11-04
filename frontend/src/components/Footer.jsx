@@ -1,5 +1,4 @@
-import React from 'react'
-import { assets } from '../assets/assets'
+import { assets } from '../assets/assets.js'
 
 const Footer = () => {
   return (
@@ -8,7 +7,7 @@ const Footer = () => {
           <div>
             <img src={assets.logo} alt="logo" className="mb-5 w-32 rounded-2xl" />
             <p className="w-full md:w-2/3 text-gray-600">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus officia labore, incidunt iure fugit nemo.
+              Baazarpur is your one-stop destination for trendy, affordable, and high-quality fashion. We bring you the latest styles with a focus on comfort, durability, and value.
             </p>
           </div>
 
@@ -26,14 +25,14 @@ const Footer = () => {
               <p className="text-xl font-medium mb-5">GET IN TOUCH</p>
               <ul className="flex flex-col gap-1 text-gray-600">
                 <li>+91 62651 26061</li>
-                <li>contact@bazario.com</li>
+                <li>contact@baazarpur.com</li>
               </ul>
           </div>
       </div>
 
           <div>
             <hr />
-            <p className="py-5 text-sm text-center">Copyright {new Date().getFullYear()} bazario.com - All Right Reserved.</p>
+            <p className="py-5 text-sm text-center">Copyright {new Date().getFullYear()} baazarpur.com - All Right Reserved.</p>
           </div>
     </div>
   )

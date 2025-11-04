@@ -1,7 +1,6 @@
-import React from 'react'
-import Title from '../components/Title'
-import { assets } from '../assets/assets'
-import NewsletterBox from '../components/NewsletterBox'
+import Title from '../components/Title.jsx'
+import { assets } from '../assets/assets.js'
+import NewsletterBox from '../components/NewsletterBox.jsx'
 
 const Contact = () => {
   return (
@@ -15,8 +14,8 @@ const Contact = () => {
         <div className="flex flex-col justify-center items-start gap-6">
           <p className="font-semibold text-xl text-gray-600">Our Office</p>
           <p className="text-gray-500">88 Parwaliya <br /> Bhopal, Madhya Pradesh, India</p>
-          <p className="text-gray-500">Tel: +91 62651 26061 <br /> Email: contact@brazario.com</p>
-          <p className="text-gray-600 font-semibold text-xl">Careers at Bazario</p>
+          <p className="text-gray-500">Tel: +91 62651 26061 <br /> Email: contact@baazarpur.com</p>
+          <p className="text-gray-600 font-semibold text-xl">Careers at Baazarpur</p>
           <p className='text-gray-500'>Learn more about our teams and job openings.</p>
           <button className="border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500">Explore Jobs</button>
         </div>

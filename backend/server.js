@@ -1,5 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv'
+dotenv.config();
+
 import cors from 'cors'
 import connectDB from './config/mongoDb.js';
 import connectCloudinary from './config/cloudinary.js';
@@ -8,7 +10,6 @@ import productRouter from './routes/productRoute.js';
 import cartRouter from './routes/cartRoute.js';
 import orderRouter from './routes/orderRoute.js';
 
-dotenv.config();
 
 // App Config
 const app = express();
@@ -17,14 +18,15 @@ connectDB();
 connectCloudinary();
 
 // middlewares
-app.use(cors({
-  origin: [
-    "https://baazarpur-five.vercel.app",
-    "https://baazarpur-admin.vercel.app"
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
-}));
+// app.use(cors({
+//   origin: [
+//     "https://baazarpur-five.vercel.app",
+//     "https://baazarpur-admin.vercel.app"
+//   ],
+//   methods: ["GET", "POST", "PUT", "DELETE"],
+//   credentials: true
+// }));
+app.use(cors())
 app.use(express.json())
 
 // api endpoints

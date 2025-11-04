@@ -16,7 +16,7 @@ const LatestCollection = () => {
         <div className="text-center py-8 text-3xl">
             <Title text1={'LATEST'} text2={'COLLECTIONS'} />
             <p className="w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores accusantium qui excepturi voluptatibus culpa velit reprehenderit reiciendis? Error, tempore amet.
+                Step into the season with our latest arrivals — where trend meets comfort. Explore fresh styles, vibrant colors, and premium-quality outfits designed to elevate your everyday look. Stay ahead of fashion with Baazarpur's handpicked new collection, crafted for every mood and moment.
             </p>
         </div>
 

@@ -32,31 +32,31 @@ const PlaceOrder = () => {
     setFormData(data => ({...data, [name]:value}))
   }
 
-  // const initPay = (order) => {
-  //   const options = {
-  //     key: import.meta.env.VITE_RAZORPAY_KEY_ID,
-  //     amount: order.amount,
-  //     currency: order.currency,
-  //     name: 'Order Payment',
-  //     description: 'Order Payment',
-  //     order_id: order.id,
-  //     receipt: order.receipt,
-  //     handler: async (response) => {
-            // try {
-            //   const { data } = await axios.post(backendUrl + '/order/verifyRazorpay', response, {headers:{token}})
-            //   if(data.success) {
-            //     navigate('/orders')
-            //     setCartItems({})
-            //   }
-            // } catch (error) {
-            //   console.log(error)
-            //   toast.error(error.message)
-            // }
-  //     }
-  //   }
-  //   const rzp = new window.Razorpay(options)
-  //   rzp.open()
-  // }
+  const initPay = (order) => {
+    const options = {
+      key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+      amount: order.amount,
+      currency: order.currency,
+      name: 'Order Payment',
+      description: 'Order Payment',
+      order_id: order.id,
+      receipt: order.receipt,
+      handler: async (response) => {
+            try {
+              const { data } = await axios.post(backendUrl + '/order/verifyRazorpay', response, {headers:{token}})
+              if(data.success) {
+                navigate('/orders')
+                setCartItems({})
+              }
+            } catch (error) {
+              console.log(error)
+              toast.error(error.message)
+            }
+      }
+    }
+    const rzp = new window.Razorpay(options)
+    rzp.open()
+  }
 
   const onSubmitHandler = async (event) => {
     event.preventDefault()
@@ -84,7 +84,7 @@ const PlaceOrder = () => {
 
       switch(method) {
 
-        case 'cod':
+        case 'cod': {
           const response = await axios.post(backendUrl + '/order/place', orderData, {headers: {token}})
           
           if(response.data.success) {
@@ -94,36 +94,45 @@ const PlaceOrder = () => {
             toast.error(response.data.message)
           }
           break;
+        }
 
-        // case 'stripe':
-        //   const responseStripe = await axios.post(backendUrl + '/order/stripe', orderData, {headers: {token}})
+        case 'stripe': {
+          const responseStripe = await axios.post(backendUrl + '/order/stripe', orderData, {headers: {token}})
           
-        //   if(responseStripe.data.success) {
-        //     const {session_url} = responseStripe.data
-        //     window.location.replace(session_url)
-        //   } else {
-        //     toast.error(responseStripe.data.message)
-        //   }
-        //   break;
+          if(responseStripe.data.success) {
+            const {session_url} = responseStripe.data
+            window.location.replace(session_url)
+          } else {
+            toast.error(responseStripe.data.message)
+          }
+          break;
+        }
         
-        // case 'razorpay':
-        //   const responseRazorpay = await axios.post(backendUrl + '/order/razorpay', orderData, {headers: {token}})
+        case 'razorpay': {
+          const responseRazorpay = await axios.post(backendUrl + '/order/razorpay', orderData, {headers: {token}})
             
-        //   if(responseRazorpay.data.success) {
-        //     initPay(responseRazorpay.data.order)
-        //   } else {
-        //     toast.error(responseRazorpay.data.message)
-        //   }
-          
-        //   break;
+          if(responseRazorpay.data.success) {
+            initPay(responseRazorpay.data.order)
+          } else {
+            toast.error(responseRazorpay.data.message)
+          }          
+          break;
+        }
         
-        case 'stripe':
-          toast("Please use COD")
-          break;
+        // case 'instamojo': {
+        //   const responseInstamojo = await axios.post(backendUrl + '/order/instamojo', orderData, {headers:{token}})
+        //   if(responseInstamojo.data.success){
+        //     window.location.href = responseInstamojo.data.payment_url;
+        //   } else {
+        //     toast.error(responseInstamojo.data.message)
+        //   }
+        //   break;
+        // }
           
-        case 'razorpay':
-          toast("Please use COD")
-          break;
+        // case 'instamojo':
+        //   toast("Please use COD")
+        //   break;
+
 
         default:
           break;
