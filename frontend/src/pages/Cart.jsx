@@ -6,7 +6,7 @@ import CartTotal from '../components/CartTotal.jsx';
 
 const Cart = () => {
 
-  const { products, currency, cartItems, updateQuantity, navigate } = useContext(ShopContext);
+  const { products, currency, cartItems, updateQuantity, navigate, token } = useContext(ShopContext);
 
   const[cartData, setCartData] = useState([]);
 
@@ -24,7 +24,7 @@ const Cart = () => {
           }
         }
       }
-      setCartData(tempData);
+      setCartData(tempData);  
     }
   }, [cartItems, products])
  
@@ -40,7 +40,7 @@ const Cart = () => {
             const productData = products.find((product) => product._id === item._id);
             return (
               <div key={key} className="py-4 border-t border-b text-gray-700 grid grid-cols-[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-4">
-                  <div className="flex items-start gap-6">
+                  <div onClick={() => navigate(`/product/${productData._id}`)} className="flex items-start gap-6">
                     <img src={productData.image[0]} alt="product image" className="w-16 sm:w-20" />
                     <div>
                       <p className="text-xs sm:text-lg font-medium">{productData.name}</p>
@@ -62,7 +62,7 @@ const Cart = () => {
         <div className="w-full sm:w-[450px]">
           <CartTotal />
           <div className="w-full text-end">
-            <button onClick={() => navigate('/place-order')} className="bg-black text-white text-sm my-8 px-8 py-3">PROCEED TO CHECKOUT</button>
+            <button onClick={() => token ? navigate('/place-order') : navigate('/login')} className="bg-black text-white text-sm my-8 px-8 py-3">PROCEED TO CHECKOUT</button>
           </div>
         </div>
       </div>

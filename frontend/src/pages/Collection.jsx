@@ -7,7 +7,7 @@ import ProductItem from '../components/ProductItem.jsx'
 const Collection = () => {
   const { products, search, showSearch } = useContext(ShopContext);
 
-  const[showFilter, setShowFilter] = useState(false);
+  const[showFilter, setShowFilter] = useState(true);
   const[filterProducts, setFilterProducts] = useState([]);
   const[category, setCategory] = useState([]);
   const[subCategory, setSubCategory] = useState([]);
@@ -73,15 +73,15 @@ const Collection = () => {
             <p className="mb-3 text-sm font-medium">CATEGORIES</p>
             <div className="flex flex-col gap-2 text-sm font-light text-gray-700">
               <p className="flex gap-2">
-                <input type="checkbox" value={'Men'} className="w-3" onChange={toggleCategory} />Men
+                <input type="checkbox" checked={category.includes("Men")} value={'Men'} className="w-3" onChange={toggleCategory} />Men
               </p>
               
               <p className="flex gap-2">
-                <input type="checkbox" value={'Women'} className="w-3" onChange={toggleCategory} />Women
+                <input type="checkbox" checked={category.includes("Women")} value={'Women'} className="w-3" onChange={toggleCategory} />Women
               </p>
               
               <p className="flex gap-2">
-                <input type="checkbox" value={'Kids'} className="w-3" onChange={toggleCategory} />Kids
+                <input type="checkbox" checked={category.includes("Kids")} value={'Kids'} className="w-3" onChange={toggleCategory} />Kids
               </p>
 
             </div>
@@ -92,21 +92,21 @@ const Collection = () => {
             <p className="mb-3 text-sm font-medium">TYPE</p>
             <div className="flex flex-col gap-2 text-sm font-light text-gray-700">
               <p className="flex gap-2">
-                <input type="checkbox" value={'Topwear'} className="w-3" onChange={toggleSubCategory} />Topwear
+                <input type="checkbox" value={'Topwear'} checked={subCategory.includes("Topwear")} className="w-3" onChange={toggleSubCategory} />Topwear
               </p>
               
               <p className="flex gap-2">
-                <input type="checkbox" value={'Bottomwear'} className="w-3" onChange={toggleSubCategory} />Bottomwear
+                <input type="checkbox" value={'Bottomwear'} checked={subCategory.includes("Bottomwear")} className="w-3" onChange={toggleSubCategory} />Bottomwear
               </p>
               
               <p className="flex gap-2">
-                <input type="checkbox" value={'Winterwear'} className="w-3" onChange={toggleSubCategory} />Winterwear
+                <input type="checkbox" value={'Winterwear'} checked={subCategory.includes("Winterwear")} className="w-3" onChange={toggleSubCategory} />Winterwear
               </p>
 
             </div>
           </div>
           <div className={`pl-3 ${showFilter ? '' : 'hidden'}`}>
-            <button className="mt-3 text-sm text-blue-600 hover:cursor-pointer" onClick={() => { setCategory([]); setSubCategory([]); }}>
+            <button onClick={() => {setCategory([]); setSubCategory([]); setSortType("relevant")}} className="mt-3 text-sm text-blue-600 hover:cursor-pointer" >
               Clear Filters
             </button>
           </div>
@@ -117,10 +117,10 @@ const Collection = () => {
           <div className="flex justify-between text-base sm:text-2xl mb-4">
             <Title text1={'ALL'} text2={'COLLECTIONS'} />
             {/* Product Sort */}
-            <select onChange={(e) => setSortType(e.target.value)} className='border-2 border-gray-300 text-sm px-2'>
+            <select onChange={(e) => setSortType(e.target.value)} value={sortType} className='border-2 border-gray-300 text-sm px-2'>
               <option value="relevant">Sort by: Relevant</option>
-              <option value="low-high">Sort by: Low to High</option>
-              <option value="high-low">Sort by: High to Low</option>
+              <option value="low-high">Sort by: Price- Low to High</option>
+              <option value="high-low">Sort by: Price- High to Low</option>
             </select>
           </div>
 

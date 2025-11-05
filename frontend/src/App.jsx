@@ -13,6 +13,7 @@ import Footer from './components/Footer.jsx'
 import SearchBar from './components/SearchBar.jsx'
 import { ToastContainer } from 'react-toastify';
 import Verify from './pages/Verify.jsx'
+import MyProfile from './pages/MyProfile.jsx'
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
         <Route path='/place-order' element={<PlaceOrder />} />
         <Route path='/product/:productId' element={<Product />} />
         <Route path='/verify' element={<Verify />} />
+        <Route path='/myprofile' element={<MyProfile />} />
       </Routes>
       <Footer />
     </div>

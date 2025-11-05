@@ -9,6 +9,9 @@ import userRouter from './routes/userRoute.js';
 import productRouter from './routes/productRoute.js';
 import cartRouter from './routes/cartRoute.js';
 import orderRouter from './routes/orderRoute.js';
+import profileRouter from './routes/profileRoute.js';
+import subscriptionRouter from './routes/subscriptionRoute.js';
+import adminRouter from './routes/adminRoute.js';
 
 
 // App Config
@@ -39,6 +42,9 @@ app.use('/api/v1/user', userRouter)
 app.use('/api/v1/product', productRouter)
 app.use('/api/v1/cart', cartRouter)
 app.use('/api/v1/order', orderRouter)
+app.use('/api/v1/profile', profileRouter)
+app.use('/api/v1/subscription', subscriptionRouter)
+app.use('/api/v1/admin', adminRouter)
 
 app.listen(port, () => {
     console.log(`http://localhost:${port}`)

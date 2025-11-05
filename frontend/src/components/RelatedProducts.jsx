@@ -3,21 +3,31 @@ import { ShopContext } from '../context/ShopContext.jsx'
 import Title from './Title.jsx';
 import ProductItem from './ProductItem.jsx';
 
-const RelatedProducts = ({category, subCategory}) => {
+const RelatedProducts = ({category, subCategory, productId }) => {
 
     const { products } = useContext(ShopContext);
     const[related, setRelated] = useState([]);
 
     useEffect(() => {
-        if(products.length > 0){
-            let productsCopy = products.slice();
+        if(products && products.length > 0 ){
+            let filtered = [];
+            
+            if(category && subCategory){
+                filtered = products.filter((item) => item.category === category && item.subCategory === subCategory && item._id !== productId)
+            }
 
-            productsCopy = productsCopy.filter((item) => category === item.category);
-            productsCopy = productsCopy.filter((item) => subCategory === item.subCategory);
+            if(filtered.length === 0 && category) {
+                filtered = products.filter((item) => item.category === category && item._id !== productId)
+            }
 
-            setRelated(productsCopy.slice(0, 5))
+            if(filtered.length === 0) {
+                filtered = products.filter((item) => item._id !== productId)
+            }
+
+            const start = Math.floor(Math.random() * Math.max(filtered.length - 4, 1))
+            setRelated(filtered.slice(start, start + 5))
         }
-    }, [products])
+    }, [products, category, subCategory, productId])
 
   return (
     <div className='my-24'>
