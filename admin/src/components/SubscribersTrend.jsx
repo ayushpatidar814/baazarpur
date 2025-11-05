@@ -9,6 +9,8 @@ const SubscribersTrend = ({ token }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    if (!token) return;
+    
     const fetchSubscribers = async () => {
       try {
         const response = await axios.get(backendUrl + '/admin/subscribers', {headers: { token }});
@@ -18,7 +20,7 @@ const SubscribersTrend = ({ token }) => {
       }
     };
     fetchSubscribers();
-  }, []);
+  }, [token]);
 
   return (
     <div className="bg-white p-4 rounded-lg shadow h-[300px]">

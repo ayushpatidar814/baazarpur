@@ -16,6 +16,8 @@ const SummaryCards = ({ token }) => {
   ];
 
   useEffect(() => {
+    if (!token) return;
+
     const fetchOverview = async () => {
         try {
             const response = await axios.get(backendUrl + '/admin/overview', {headers: {token}})
@@ -28,7 +30,7 @@ const SummaryCards = ({ token }) => {
         }
     }
     fetchOverview();
-  }, [])
+  }, [token])
 
   if (!overview) return <p>Loading overview...</p>;
 

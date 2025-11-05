@@ -10,6 +10,8 @@ const OrdersStatusChart = ({ token }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!token) return;
+
     const fetchStatus = async () => {
       try {
         const res = await axios.get(backendUrl + '/admin/ordersStatus', {headers: { token },
@@ -34,7 +36,7 @@ const OrdersStatusChart = ({ token }) => {
       }
     };
     fetchStatus();
-  }, []);
+  }, [token]);
 
   return (
     <div className="bg-white p-4 rounded-lg shadow">

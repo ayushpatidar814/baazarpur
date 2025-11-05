@@ -11,6 +11,8 @@ const SalesOverview = ({ token }) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
+      if (!token) return;
+
     const fetchOverview = async () => {
         try {
             const response = await axios.get(backendUrl + '/admin/salesTrends', {headers: {token}})
@@ -23,7 +25,7 @@ const SalesOverview = ({ token }) => {
         }
     }
     fetchOverview();
-  }, [])
+  }, [token])
 
   return (
     <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-200">

@@ -8,6 +8,8 @@ const TopProductsChart = ({ token }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    if (!token) return;
+
     const fetchTopProducts = async () => {
       try {
         const response = await axios.get(backendUrl + '/admin/topProducts', {headers: { token } });
@@ -17,7 +19,7 @@ const TopProductsChart = ({ token }) => {
       }
     };
     fetchTopProducts();
-  }, []);
+  }, [token]);
 
   return (
     <div className="bg-white p-4 rounded-lg shadow h-[300px]">
